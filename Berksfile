@@ -38,6 +38,7 @@ cookbook 's3_file',  path: "s3_file"
 cookbook 'scm_helper',  path: "scm_helper"
 cookbook 'ssh_host_keys',  path: "ssh_host_keys"
 cookbook 'ssh_users',  path: "ssh_users"
+cookbook 'sneakers_worker', path: 'sneakers_worker'
 cookbook 'test_suite',  path: "test_suite"
 cookbook 'unicorn',  path: "unicorn"
 cookbook 'install_ruby',  path: "install_ruby"

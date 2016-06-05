@@ -74,6 +74,8 @@ DEPENDENCIES
     path: s3_file
   scm_helper
     path: scm_helper
+  sneakers_worker
+    path: sneakers_worker
   ssh_host_keys
     path: ssh_host_keys
   ssh_users
@@ -187,6 +189,8 @@ GRAPH
   scm_helper (1.0.0)
     opsworks_commons (>= 0.0.0)
     s3_file (>= 0.0.0)
+  sneakers_worker (0.1.1)
+    deploy (>= 0.0.0)
   ssh_host_keys (1.0.0)
   ssh_users (1.0.0)
     opsworks_commons (>= 0.0.0)
