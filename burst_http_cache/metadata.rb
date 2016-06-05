@@ -1,0 +1,7 @@
+name 'burst_http_cache'
+maintainer 'Sim Kern Cheh'
+maintainer_email 'kern.cheh@gmail.com'
+license 'all_rights'
+description 'Installs/Configures burst_http_cache'
+long_description 'Installs/Configures burst_http_cache'
+version '0.1.0'

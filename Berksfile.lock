@@ -4,6 +4,8 @@ DEPENDENCIES
   apache2
     path: apache2
   apt
+  burst_http_cache
+    path: burst_http_cache
   chef_opsworks_elb
     path: chef_opsworks_elb
   cron_jobs
@@ -112,6 +114,7 @@ GRAPH
     compat_resource (>= 12.10)
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
+  burst_http_cache (0.1.0)
   chef_handler (1.4.0)
   chef_opsworks_elb (0.0.2)
   compat_resource (12.10.5)
