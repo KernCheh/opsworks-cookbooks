@@ -15,6 +15,9 @@ DEPENDENCIES
     path: gem_support
   haproxy
     path: haproxy
+  install_ruby
+    path: install_ruby
+  magic_shell (~> 1.0.0)
   memcached
     path: memcached
   mod_php5_apache2
@@ -67,6 +70,7 @@ DEPENDENCIES
     path: rails
   ruby
     path: ruby
+  ruby_build
   s3_file
     path: s3_file
   scm_helper
@@ -112,6 +116,10 @@ GRAPH
   gem_support (1.0.0)
   haproxy (1.0.0)
     opsworks_commons (>= 0.0.0)
+  install_ruby (1.0.0)
+    magic_shell (>= 0.0.0)
+    ruby_build (>= 0.0.0)
+  magic_shell (1.0.0)
   memcached (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
   mod_php5_apache2 (1.0.0)
@@ -175,6 +183,7 @@ GRAPH
     opsworks_commons (>= 0.0.0)
     opsworks_initial_setup (>= 0.0.0)
     opsworks_rubygems (>= 0.0.0)
+  ruby_build (0.8.0)
   s3_file (2.6.6)
   scm_helper (1.0.0)
     opsworks_commons (>= 0.0.0)

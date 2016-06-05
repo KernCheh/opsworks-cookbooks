@@ -9,3 +9,5 @@
 # The following shows how to override the gem binary:
 #
 #normal[:dependencies][:gem_binary] = '/my/gem/binary'
+
+normal[:dependencies][:gem_binary] = "/usr/local/ruby/#{node[:opsworks][:ruby_version]}/bin/gem"
