@@ -40,3 +40,5 @@ cookbook 'ssh_host_keys',  path: "ssh_host_keys"
 cookbook 'ssh_users',  path: "ssh_users"
 cookbook 'test_suite',  path: "test_suite"
 cookbook 'unicorn',  path: "unicorn"
+
+cookbook 'user'

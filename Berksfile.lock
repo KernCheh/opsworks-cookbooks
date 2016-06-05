@@ -79,6 +79,7 @@ DEPENDENCIES
     path: test_suite
   unicorn
     path: unicorn
+  user
 
 GRAPH
   agent_version (1.0.0)
