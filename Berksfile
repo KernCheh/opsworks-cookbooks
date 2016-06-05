@@ -28,6 +28,7 @@ cookbook 'opsworks_nodejs',  path: "opsworks_nodejs"
 cookbook 'opsworks_postgresql',  path: "opsworks_postgresql"
 cookbook 'opsworks_rubygems',  path: "opsworks_rubygems"
 cookbook 'opsworks_shutdown',  path: "opsworks_shutdown"
+cookbook 'opsworks_sidekiq',  path: "opsworks_sidekiq"
 cookbook 'opsworks_stack_state_sync',  path: "opsworks_stack_state_sync"
 cookbook 'packages',  path: "packages"
 cookbook 'passenger_apache2',  path: "passenger_apache2"
@@ -45,6 +46,8 @@ cookbook 'unicorn',  path: "unicorn"
 cookbook 'install_ruby',  path: "install_ruby"
 
 cookbook 'ruby_build'
+cookbook 'erlang', '~>1.5.0'
+cookbook 'rabbitmq', '~>3.3.0'
 
 # local
 cookbook 'user'

@@ -11,6 +11,7 @@ DEPENDENCIES
     path: deploy_user
   ebs
     path: ebs
+  erlang (~> 1.5.0)
   gem_support
     path: gem_support
   haproxy
@@ -57,6 +58,8 @@ DEPENDENCIES
     path: opsworks_rubygems
   opsworks_shutdown
     path: opsworks_shutdown
+  opsworks_sidekiq
+    path: opsworks_sidekiq
   opsworks_stack_state_sync
     path: opsworks_stack_state_sync
   packages
@@ -65,6 +68,7 @@ DEPENDENCIES
     path: passenger_apache2
   php
     path: php
+  rabbitmq (~> 3.3.0)
   rails
     path: rails
   ruby
@@ -92,6 +96,14 @@ GRAPH
   agent_version (1.0.0)
     opsworks_initial_setup (>= 0.0.0)
   apache2 (1.0.0)
+  apt (4.0.0)
+    compat_resource (>= 0.0.0)
+  build-essential (6.0.0)
+    compat_resource (>= 12.10)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  chef_handler (1.4.0)
+  compat_resource (12.10.5)
   dependencies (1.0.0)
     gem_support (>= 0.0.0)
     install_ruby (>= 0.0.0)
@@ -118,6 +130,12 @@ GRAPH
   deploy_user (1.0.0)
     user (>= 0.0.0)
   ebs (1.0.0)
+  erlang (1.5.8)
+    apt (>= 1.7.0)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+    yum-erlang_solutions (>= 0.0.0)
   gem_support (1.0.0)
   haproxy (1.0.0)
     opsworks_commons (>= 0.0.0)
@@ -125,6 +143,9 @@ GRAPH
     ruby_build (>= 0.0.0)
   memcached (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
+  mingw (1.1.0)
+    compat_resource (>= 0.0.0)
+    seven_zip (>= 0.0.0)
   mod_php5_apache2 (1.0.0)
     apache2 (>= 0.0.0)
     deploy (>= 0.0.0)
@@ -165,6 +186,8 @@ GRAPH
     opsworks_initial_setup (>= 0.0.0)
   opsworks_shutdown (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
+  opsworks_sidekiq (0.0.0)
+    deploy (>= 0.0.0)
   opsworks_stack_state_sync (1.0.0)
   packages (1.0.0)
   passenger_apache2 (1.0.0)
@@ -177,6 +200,8 @@ GRAPH
     unicorn (>= 0.0.0)
   php (1.0.0)
     deploy (>= 0.0.0)
+  rabbitmq (3.3.0)
+    erlang (>= 0.9)
   rails (1.0.0)
     apache2 (>= 0.0.0)
     deploy (>= 0.0.0)
@@ -193,6 +218,8 @@ GRAPH
     s3_file (>= 0.0.0)
   setup_swap (0.1.0)
     opsworks_initial_setup (>= 0.0.0)
+  seven_zip (2.0.1)
+    windows (>= 1.2.2)
   sneakers_worker (0.1.1)
     deploy (>= 0.0.0)
   ssh_host_keys (1.0.0)
@@ -206,3 +233,11 @@ GRAPH
     nginx (>= 0.0.0)
     rails (>= 0.0.0)
   user (0.4.2)
+  windows (1.43.0)
+    chef_handler (>= 0.0.0)
+  yum (3.11.0)
+  yum-epel (0.7.0)
+    yum (>= 3.6.3)
+  yum-erlang_solutions (0.3.1)
+    yum (~> 3.2)
+    yum-epel (>= 0.0.0)
