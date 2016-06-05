@@ -28,9 +28,9 @@ default[:opsworks][:ruby_stack] = 'ruby'
 default[:opsworks][:ruby_version] = '1.9.3'
 default[:opsworks][:run_cookbook_tests] = false
 
-default['opsworks_initial_setup']['swapfile_instancetypes'] = [ 't1.micro', 't2.micro' ]
-default['opsworks_initial_setup']['swapfile_name'] = '/var/swapfile'
-default['opsworks_initial_setup']['swapfile_size_mb'] = 256
+default['opsworks_initial_setup']['swapfile_instancetypes'] = [ 't1.micro', 't2.micro', 't1.small', 't2.small']
+default['opsworks_initial_setup']['swapfile_name'] = '/vol/workspace/swapfile'
+default['opsworks_initial_setup']['swapfile_size_mb'] = 1024
 
 default[:opsworks_initial_setup][:sysctl] = Mash.new
 default[:opsworks_initial_setup][:sysctl]['net.core.somaxconn'] = 1024           # 128
