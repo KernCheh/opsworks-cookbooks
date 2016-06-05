@@ -2,6 +2,7 @@ source "https://supermarket.chef.io"
 
 cookbook 'agent_version',  path: "agent_version"
 cookbook 'apache2',  path: "apache2"
+cookbook 'assets_precompile',  path: "assets_precompile"
 cookbook 'burst_http_cache',  path: "burst_http_cache"
 cookbook 'chef_opsworks_elb',  path: "chef_opsworks_elb"
 cookbook 'cron_jobs',  path: "cron_jobs"
