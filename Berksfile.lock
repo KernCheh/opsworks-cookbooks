@@ -54,6 +54,8 @@ DEPENDENCIES
     path: opsworks_nodejs
   opsworks_postgresql
     path: opsworks_postgresql
+  opsworks_rabbitmq
+    path: opsworks_rabbitmq
   opsworks_rubygems
     path: opsworks_rubygems
   opsworks_shutdown
@@ -182,6 +184,9 @@ GRAPH
     deploy (>= 0.0.0)
     opsworks_commons (>= 0.0.0)
   opsworks_postgresql (1.0.0)
+  opsworks_rabbitmq (0.3.0)
+    erlang (~> 1.5.0)
+    rabbitmq (~> 3.3.0)
   opsworks_rubygems (1.0.0)
     opsworks_initial_setup (>= 0.0.0)
   opsworks_shutdown (1.0.0)
