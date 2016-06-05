@@ -53,6 +53,8 @@ DEPENDENCIES
     path: opsworks_commons
   opsworks_custom_cookbooks
     path: opsworks_custom_cookbooks
+  opsworks_custom_env
+    path: opsworks_custom_env
   opsworks_ecs
     path: opsworks_ecs
   opsworks_ganglia
@@ -192,6 +194,7 @@ GRAPH
     opsworks_commons (>= 0.0.0)
     opsworks_initial_setup (>= 0.0.0)
     scm_helper (>= 0.0.0)
+  opsworks_custom_env (0.3.0)
   opsworks_ecs (1.0.0)
   opsworks_ganglia (1.0.0)
     apache2 (>= 0.0.0)
