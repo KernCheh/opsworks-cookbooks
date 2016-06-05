@@ -17,7 +17,6 @@ DEPENDENCIES
     path: haproxy
   install_ruby
     path: install_ruby
-  magic_shell (~> 1.0.0)
   memcached
     path: memcached
   mod_php5_apache2
@@ -91,12 +90,14 @@ GRAPH
   apache2 (1.0.0)
   dependencies (1.0.0)
     gem_support (>= 0.0.0)
+    install_ruby (>= 0.0.0)
     opsworks_nodejs (>= 0.0.0)
     packages (>= 0.0.0)
     ruby (>= 0.0.0)
   deploy (1.0.0)
     apache2 (>= 0.0.0)
     dependencies (>= 0.0.0)
+    install_ruby (>= 0.0.0)
     mod_php5_apache2 (>= 0.0.0)
     mysql (>= 0.0.0)
     nginx (>= 0.0.0)
@@ -117,9 +118,7 @@ GRAPH
   haproxy (1.0.0)
     opsworks_commons (>= 0.0.0)
   install_ruby (1.0.0)
-    magic_shell (>= 0.0.0)
     ruby_build (>= 0.0.0)
-  magic_shell (1.0.0)
   memcached (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
   mod_php5_apache2 (1.0.0)

@@ -5,4 +5,3 @@ maintainer      'KC'
 version         '1.0.0'
 
 depends         'ruby_build'
-depends         'magic_shell'

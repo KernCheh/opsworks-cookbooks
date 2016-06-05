@@ -43,7 +43,6 @@ cookbook 'unicorn',  path: "unicorn"
 cookbook 'install_ruby',  path: "install_ruby"
 
 cookbook 'ruby_build'
-cookbook 'magic_shell', '~> 1.0.0'
 
 # local
 cookbook 'user'

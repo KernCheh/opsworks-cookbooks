@@ -1,7 +1,11 @@
 include_recipe 'ruby_build'
 
-ruby_build_ruby node[:opsworks][:ruby_version]
+# install ruby
+ruby_build_ruby node[:opsworks][:ruby_version] do
+  prefix_path '/usr/local/'
+end
 
-magic_shell_environment 'PATH' do
-  value "$PATH:/usr/local/ruby/#{node[:opsworks][:ruby_version]}/bin"
+#install bundler
+gem_package 'bundler' do
+  options '--no-ri --no-rdoc'
 end
