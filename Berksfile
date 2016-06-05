@@ -2,6 +2,7 @@ source "https://supermarket.chef.io"
 
 cookbook 'agent_version',  path: "agent_version"
 cookbook 'apache2',  path: "apache2"
+cookbook 'cron_jobs',  path: "cron_jobs"
 cookbook 'dependencies',  path: "dependencies"
 cookbook 'deploy',  path: "deploy"
 cookbook 'deploy_user',  path: "deploy_user"

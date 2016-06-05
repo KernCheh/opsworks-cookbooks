@@ -4,6 +4,8 @@ DEPENDENCIES
   apache2
     path: apache2
   apt
+  cron_jobs
+    path: cron_jobs
   dependencies
     path: dependencies
   deploy
@@ -110,6 +112,7 @@ GRAPH
     seven_zip (>= 0.0.0)
   chef_handler (1.4.0)
   compat_resource (12.10.5)
+  cron_jobs (0.1.0)
   dependencies (1.0.0)
     gem_support (>= 0.0.0)
     install_ruby (>= 0.0.0)

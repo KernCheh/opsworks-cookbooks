@@ -1,0 +1,7 @@
+name 'cron_jobs'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures cron_jobs'
+long_description 'Installs/Configures cron_jobs'
+version '0.1.0'
