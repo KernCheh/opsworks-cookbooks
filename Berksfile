@@ -8,6 +8,8 @@ cookbook 'deploy_user',  path: "deploy_user"
 cookbook 'ebs',  path: "ebs"
 cookbook 'gem_support',  path: "gem_support"
 cookbook 'haproxy',  path: "haproxy"
+cookbook 'install_ruby',  path: "install_ruby"
+cookbook 'logentries_agent',  path: "logentries_agent"
 cookbook 'memcached',  path: "memcached"
 cookbook 'mod_php5_apache2',  path: "mod_php5_apache2"
 cookbook 'mysql',  path: "mysql"
@@ -44,11 +46,12 @@ cookbook 'ssh_users',  path: "ssh_users"
 cookbook 'sneakers_worker', path: 'sneakers_worker'
 cookbook 'test_suite',  path: "test_suite"
 cookbook 'unicorn',  path: "unicorn"
-cookbook 'install_ruby',  path: "install_ruby"
 
 cookbook 'ruby_build'
 cookbook 'erlang', '~>1.5.0'
 cookbook 'rabbitmq', '~>3.3.0'
+cookbook 'apt'
+cookbook 'yum'
 
 # local
 cookbook 'user'

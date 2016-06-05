@@ -3,6 +3,7 @@ DEPENDENCIES
     path: agent_version
   apache2
     path: apache2
+  apt
   dependencies
     path: dependencies
   deploy
@@ -18,6 +19,8 @@ DEPENDENCIES
     path: haproxy
   install_ruby
     path: install_ruby
+  logentries_agent
+    path: logentries_agent
   memcached
     path: memcached
   mod_php5_apache2
@@ -93,6 +96,7 @@ DEPENDENCIES
   unicorn
     path: unicorn
   user
+  yum
 
 GRAPH
   agent_version (1.0.0)
@@ -143,6 +147,9 @@ GRAPH
     opsworks_commons (>= 0.0.0)
   install_ruby (1.0.0)
     ruby_build (>= 0.0.0)
+  logentries_agent (0.2.6)
+    apt (>= 0.0.0)
+    yum (>= 0.0.0)
   memcached (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
   mingw (1.1.0)
