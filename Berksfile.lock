@@ -1,0 +1,191 @@
+DEPENDENCIES
+  agent_version
+    path: agent_version
+  apache2
+    path: apache2
+  dependencies
+    path: dependencies
+  deploy
+    path: deploy
+  deploy_user
+    path: deploy_user
+  ebs
+    path: ebs
+  gem_support
+    path: gem_support
+  haproxy
+    path: haproxy
+  memcached
+    path: memcached
+  mod_php5_apache2
+    path: mod_php5_apache2
+  mysql
+    path: mysql
+  nginx
+    path: nginx
+  opsworks_agent_monit
+    path: opsworks_agent_monit
+  opsworks_aws_flow_ruby
+    path: opsworks_aws_flow_ruby
+  opsworks_berkshelf
+    path: opsworks_berkshelf
+  opsworks_bundler
+    path: opsworks_bundler
+  opsworks_cleanup
+    path: opsworks_cleanup
+  opsworks_cloudwatchlogs
+    path: opsworks_cloudwatchlogs
+  opsworks_commons
+    path: opsworks_commons
+  opsworks_custom_cookbooks
+    path: opsworks_custom_cookbooks
+  opsworks_ecs
+    path: opsworks_ecs
+  opsworks_ganglia
+    path: opsworks_ganglia
+  opsworks_initial_setup
+    path: opsworks_initial_setup
+  opsworks_java
+    path: opsworks_java
+  opsworks_nodejs
+    path: opsworks_nodejs
+  opsworks_postgresql
+    path: opsworks_postgresql
+  opsworks_rubygems
+    path: opsworks_rubygems
+  opsworks_shutdown
+    path: opsworks_shutdown
+  opsworks_stack_state_sync
+    path: opsworks_stack_state_sync
+  packages
+    path: packages
+  passenger_apache2
+    path: passenger_apache2
+  php
+    path: php
+  rails
+    path: rails
+  ruby
+    path: ruby
+  s3_file
+    path: s3_file
+  scm_helper
+    path: scm_helper
+  ssh_host_keys
+    path: ssh_host_keys
+  ssh_users
+    path: ssh_users
+  test_suite
+    path: test_suite
+  unicorn
+    path: unicorn
+
+GRAPH
+  agent_version (1.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  apache2 (1.0.0)
+  dependencies (1.0.0)
+    gem_support (>= 0.0.0)
+    opsworks_nodejs (>= 0.0.0)
+    packages (>= 0.0.0)
+    ruby (>= 0.0.0)
+  deploy (1.0.0)
+    apache2 (>= 0.0.0)
+    dependencies (>= 0.0.0)
+    mod_php5_apache2 (>= 0.0.0)
+    mysql (>= 0.0.0)
+    nginx (>= 0.0.0)
+    opsworks_agent_monit (>= 0.0.0)
+    opsworks_aws_flow_ruby (>= 0.0.0)
+    opsworks_java (>= 0.0.0)
+    opsworks_nodejs (>= 0.0.0)
+    opsworks_postgresql (>= 0.0.0)
+    passenger_apache2 (>= 0.0.0)
+    php (>= 0.0.0)
+    scm_helper (>= 0.0.0)
+    ssh_users (>= 0.0.0)
+    unicorn (>= 0.0.0)
+  deploy_user (1.0.0)
+    user (>= 0.0.0)
+  ebs (1.0.0)
+  gem_support (1.0.0)
+  haproxy (1.0.0)
+    opsworks_commons (>= 0.0.0)
+  memcached (1.0.0)
+    opsworks_agent_monit (>= 0.0.0)
+  mod_php5_apache2 (1.0.0)
+    apache2 (>= 0.0.0)
+    deploy (>= 0.0.0)
+  mysql (1.0.0)
+    opsworks_commons (>= 0.0.0)
+  nginx (1.0.0)
+  opsworks_agent_monit (1.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  opsworks_aws_flow_ruby (1.0.0)
+  opsworks_berkshelf (1.1.0)
+    opsworks_commons (>= 0.0.0)
+    scm_helper (>= 0.0.0)
+  opsworks_bundler (1.0.0)
+  opsworks_cleanup (1.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  opsworks_cloudwatchlogs (1.0.0)
+  opsworks_commons (1.0.0)
+    dependencies (>= 0.0.0)
+  opsworks_custom_cookbooks (1.0.0)
+    opsworks_berkshelf (>= 0.0.0)
+    opsworks_commons (>= 0.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+    scm_helper (>= 0.0.0)
+  opsworks_ecs (1.0.0)
+  opsworks_ganglia (1.0.0)
+    apache2 (>= 0.0.0)
+    opsworks_commons (>= 0.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  opsworks_initial_setup (1.0.0)
+    opsworks_commons (>= 0.0.0)
+  opsworks_java (1.0.0)
+    apache2 (>= 0.0.0)
+  opsworks_nodejs (1.0.0)
+    deploy (>= 0.0.0)
+    opsworks_commons (>= 0.0.0)
+  opsworks_postgresql (1.0.0)
+  opsworks_rubygems (1.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  opsworks_shutdown (1.0.0)
+    opsworks_agent_monit (>= 0.0.0)
+  opsworks_stack_state_sync (1.0.0)
+  packages (1.0.0)
+  passenger_apache2 (1.0.0)
+    apache2 (>= 0.0.0)
+    gem_support (>= 0.0.0)
+    nginx (>= 0.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+    packages (>= 0.0.0)
+    rails (>= 0.0.0)
+    unicorn (>= 0.0.0)
+  php (1.0.0)
+    deploy (>= 0.0.0)
+  rails (1.0.0)
+    apache2 (>= 0.0.0)
+    deploy (>= 0.0.0)
+    nginx (>= 0.0.0)
+  ruby (1.0.0)
+    opsworks_bundler (>= 0.0.0)
+    opsworks_commons (>= 0.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+    opsworks_rubygems (>= 0.0.0)
+  s3_file (2.6.6)
+  scm_helper (1.0.0)
+    opsworks_commons (>= 0.0.0)
+    s3_file (>= 0.0.0)
+  ssh_host_keys (1.0.0)
+  ssh_users (1.0.0)
+    opsworks_commons (>= 0.0.0)
+    opsworks_initial_setup (>= 0.0.0)
+  test_suite (1.0.0)
+    opsworks_commons (>= 0.0.0)
+  unicorn (1.0.0)
+    apache2 (>= 0.0.0)
+    nginx (>= 0.0.0)
+    rails (>= 0.0.0)
+  user (0.4.2)
