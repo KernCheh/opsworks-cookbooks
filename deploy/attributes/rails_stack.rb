@@ -14,7 +14,7 @@
 # See also: http://docs.aws.amazon.com/opsworks/latest/userguide/customizing.html
 ###
 
-default[:opsworks][:rails_stack][:name] = "apache_passenger"
+default[:opsworks][:rails_stack][:name] = "nginx_unicorn"
 case node[:opsworks][:rails_stack][:name]
 when "apache_passenger"
   normal[:opsworks][:rails_stack][:recipe] = "passenger_apache2::rails"

@@ -1,7 +1,7 @@
 include_recipe 'ruby_build'
 
 # install ruby
-ruby_build_ruby node[:opsworks][:ruby_version] do
+ruby_build_ruby node[:ruby_version] do
   prefix_path '/usr/local/'
 end
 
