@@ -91,6 +91,8 @@ DEPENDENCIES
     path: s3_file
   scm_helper
     path: scm_helper
+  set_java_home
+    path: set_java_home
   setup_swap
     path: setup_swap
   sneakers_worker
@@ -240,6 +242,7 @@ GRAPH
   scm_helper (1.0.0)
     opsworks_commons (>= 0.0.0)
     s3_file (>= 0.0.0)
+  set_java_home (0.1.0)
   setup_swap (0.1.0)
     opsworks_initial_setup (>= 0.0.0)
   seven_zip (2.0.1)
