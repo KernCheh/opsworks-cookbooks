@@ -27,6 +27,10 @@ before_exec do |server|
 end
 
 before_fork do |server, worker|
+  Signal.trap 'USR2' do
+    server.send(:reexec)
+  end
+
   # the following is highly recomended for Rails + "preload_app true"
   # as there's no need for the master process to hold a connection
   if defined?(ActiveRecord::Base)
@@ -43,6 +47,12 @@ before_fork do |server, worker|
       # someone else did our job for us
     end
   end
+
+  <% if node[:unicorn][:rabbitmq] %>
+  if RabbitmqConnectionManager.connection.connected?
+    RabbitmqConnectionManager.connection.close
+  end
+  <% end %>
 end
 
 after_fork do |server, worker|
@@ -56,4 +66,8 @@ after_fork do |server, worker|
   # and Redis.  TokyoCabinet file handles are safe to reuse
   # between any number of forked children (assuming your kernel
   # correctly implements pread()/pwrite() system calls)
+
+  <% if node[:unicorn][:rabbitmq] %>
+  RabbitmqConnectionManager.connection.start
+  <% end %>
 end
