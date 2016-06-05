@@ -78,23 +78,24 @@ define :opsworks_deploy do
       symlinks(deploy[:symlinks]) unless deploy[:symlinks].nil?
       action deploy[:action]
 
-      if deploy[:application_type] == 'rails' && node[:opsworks][:instance][:layers].include?('rails-app')
+      if deploy[:application_type] == 'rails' &&
+        (node[:opsworks][:instance][:layers].include?('rails-app') || node[:opsworks][:instance][:layers].include?('rails-app2'))
         restart_command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
       end
 
       case deploy[:scm][:scm_type].to_s
-      when 'git'
-        scm_provider :git
-        enable_submodules deploy[:enable_submodules]
-        shallow_clone deploy[:shallow_clone]
-      when 'svn'
-        scm_provider :subversion
-        svn_username deploy[:scm][:user]
-        svn_password deploy[:scm][:password]
-        svn_arguments "--no-auth-cache --non-interactive --trust-server-cert"
-        svn_info_args "--no-auth-cache --non-interactive --trust-server-cert"
-      else
-        raise "unsupported SCM type #{deploy[:scm][:scm_type].inspect}"
+        when 'git'
+          scm_provider :git
+          enable_submodules deploy[:enable_submodules]
+          shallow_clone deploy[:shallow_clone]
+        when 'svn'
+          scm_provider :subversion
+          svn_username deploy[:scm][:user]
+          svn_password deploy[:scm][:password]
+          svn_arguments "--no-auth-cache --non-interactive --trust-server-cert"
+          svn_info_args "--no-auth-cache --non-interactive --trust-server-cert"
+        else
+          raise "unsupported SCM type #{deploy[:scm][:scm_type].inspect}"
       end
 
       before_migrate do
@@ -164,23 +165,24 @@ define :opsworks_deploy do
     end
   end
 
-  if deploy[:application_type] == 'rails' && node[:opsworks][:instance][:layers].include?('rails-app')
+  if deploy[:application_type] == 'rails' &&
+    (node[:opsworks][:instance][:layers].include?('rails-app') || node[:opsworks][:instance][:layers].include?('rails-app2'))
     case node[:opsworks][:rails_stack][:name]
 
-    when 'apache_passenger'
-      passenger_web_app do
-        application application
-        deploy deploy
-      end
+      when 'apache_passenger'
+        passenger_web_app do
+          application application
+          deploy deploy
+        end
 
-    when 'nginx_unicorn'
-      unicorn_web_app do
-        application application
-        deploy deploy
-      end
+      when 'nginx_unicorn'
+        unicorn_web_app do
+          application application
+          deploy deploy
+        end
 
-    else
-      raise "Unsupport Rails stack"
+      else
+        raise "Unsupported Rails stack"
     end
   end
 
