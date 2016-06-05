@@ -8,6 +8,7 @@ depends "ruby"
 depends "gem_support"
 depends "packages"
 depends "opsworks_nodejs"
+depends "install_ruby"
 
 recipe "dependencies::update", "Update all packages and gems"
 
