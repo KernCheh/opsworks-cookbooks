@@ -37,6 +37,8 @@ node[:deploy].each do |application, deploy|
     environment 'RAILS_ENV' => rails_env
   end
 
+  Chef::Log.info("Restart command #{node[:opsworks][:rails_stack][:restart_command]}")
+
   execute "restart Rails application #{application}" do
     cwd deploy[:current_path]
     command node[:opsworks][:rails_stack][:restart_command]
