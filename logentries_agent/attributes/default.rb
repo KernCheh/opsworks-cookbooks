@@ -6,8 +6,6 @@ default['le']['hostname'] = node['hostname']
 default['le']['logs_to_follow'] = [
     {:name => 'syslog', :log => '/var/log/syslog'},
     {:name => 'varlog', :log => '/var/log/*.log'},
-    {:name => 'unicorn_stdout', :log => '/srv/www/luxola_wms/shared/log/unicorn.stdout.log'},
-    {:name => 'unicorn_stderr', :log => '/srv/www/luxola_wms/shared/log/unicorn.stderr.log'},
     {:name => '', :log => '/var/log/nginx/error.log'}
 ]
 
