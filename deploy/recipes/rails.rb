@@ -7,7 +7,9 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  case deploy[:database][:type]
+  rds_db_instance = search('aws_opsworks_rds_db_instance').first
+
+  case rds_db_instance[:engine]
   when "mysql"
     include_recipe "mysql::client_install"
   when "postgresql"
@@ -24,8 +26,6 @@ node[:deploy].each do |application, deploy|
     deploy_data deploy
     app application
   end
-
-  Chef::Log.info("****** deploy data #{deploy.inspect} ******")
 
   opsworks_deploy do
     deploy_data deploy
