@@ -1,7 +1,6 @@
-if node[:opsworks][:instance][:layers].include?('rails-app') ||
-  node[:opsworks][:instance][:layers].include?('rails-app2') ||
-  node[:opsworks][:instance][:layers].include?('sidekiq') ||
-  node[:opsworks][:instance][:layers].include?('recurring') ||
+layer = search('aws_opsworks_layer').first
+
+if %w(rails-app rails-app2 sidekiq recurring mq).include?(layer['shortname']) ||
   (node[:opsworks][:instance][:layers] & (node[:set_env_for] || [])).size > 0
 
   include_recipe "opsworks_custom_env::restart_command"

@@ -78,8 +78,10 @@ define :opsworks_deploy do
       symlinks(deploy[:symlinks]) unless deploy[:symlinks].nil?
       action deploy[:action]
 
-      if deploy[:application_type] == 'rails' &&
-        (node[:opsworks][:instance][:layers].include?('rails-app') || node[:opsworks][:instance][:layers].include?('rails-app2'))
+      layer = search('aws_opsworks_layer').first
+      Chef::Log.info("********** The layer's shortname is '#{layer['shortname']}' **********")
+
+      if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
         restart_command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
       end
 
@@ -165,8 +167,7 @@ define :opsworks_deploy do
     end
   end
 
-  if deploy[:application_type] == 'rails' &&
-    (node[:opsworks][:instance][:layers].include?('rails-app') || node[:opsworks][:instance][:layers].include?('rails-app2'))
+  if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
     case node[:opsworks][:rails_stack][:name]
 
       when 'apache_passenger'
