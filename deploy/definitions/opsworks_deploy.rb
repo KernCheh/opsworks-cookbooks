@@ -1,6 +1,8 @@
 define :opsworks_deploy do
   application = params[:app]
   deploy = params[:deploy_data]
+  app_source = search('aws_opsworks_app').first['app_source']
+  layer = search('aws_opsworks_layer').first
 
   directory "#{deploy[:deploy_to]}" do
     group deploy[:group]
@@ -10,15 +12,15 @@ define :opsworks_deploy do
     recursive true
   end
 
-  if deploy[:scm]
-    ensure_scm_package_installed(deploy[:scm][:scm_type])
+  if app_source[:url]
+    ensure_scm_package_installed(app_source[:type])
 
     prepare_git_checkouts(
       :user => deploy[:user],
       :group => deploy[:group],
       :home => deploy[:home],
-      :ssh_key => deploy[:scm][:ssh_key]
-    ) if deploy[:scm][:scm_type].to_s == 'git'
+      :ssh_key => app_source[:ssh_key]
+    ) if app_source[:type].to_s == 'git'
 
     prepare_svn_checkouts(
       :user => deploy[:user],
@@ -26,16 +28,16 @@ define :opsworks_deploy do
       :home => deploy[:home],
       :deploy => deploy,
       :application => application
-    ) if deploy[:scm][:scm_type].to_s == 'svn'
+    ) if app_source[:type].to_s == 'svn'
 
-    if deploy[:scm][:scm_type].to_s == 'archive'
-      repository = prepare_archive_checkouts(deploy[:scm])
+    if app_source[:type].to_s == 'archive'
+      repository = prepare_archive_checkouts(app_source)
       node.set[:deploy][application][:scm] = {
         :scm_type => 'git',
         :repository => repository
       }
-    elsif deploy[:scm][:scm_type].to_s == 's3'
-      repository = prepare_s3_checkouts(deploy[:scm])
+    elsif app_source[:type].to_s == 's3'
+      repository = prepare_s3_checkouts(app_source)
       node.set[:deploy][application][:scm] = {
         :scm_type => 'git',
         :repository => repository
@@ -59,18 +61,16 @@ define :opsworks_deploy do
     end
   end
 
-  layer = search('aws_opsworks_layer').first
-
   # setup deployment & checkout
-  if deploy[:scm] && deploy[:scm][:scm_type] != 'other'
+  if app_source && app_source[:type] != 'other'
     Chef::Log.debug("Checking out source code of application #{application} with type #{deploy[:application_type]}")
     deploy deploy[:deploy_to] do
       provider Chef::Provider::Deploy.const_get(deploy[:chef_provider])
       keep_releases deploy[:keep_releases]
-      repository deploy[:scm][:repository]
+      repository app_source[:url]
       user deploy[:user]
       group deploy[:group]
-      revision deploy[:scm][:revision]
+      revision app_source[:revision]
       migrate deploy[:migrate]
       migration_command deploy[:migrate_command]
       environment deploy[:environment].to_hash
@@ -84,19 +84,19 @@ define :opsworks_deploy do
         restart_command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
       end
 
-      case deploy[:scm][:scm_type].to_s
+      case app_source[:type].to_s
         when 'git'
           scm_provider :git
           enable_submodules deploy[:enable_submodules]
           shallow_clone deploy[:shallow_clone]
         when 'svn'
           scm_provider :subversion
-          svn_username deploy[:scm][:user]
-          svn_password deploy[:scm][:password]
+          svn_username app_source[:user]
+          svn_password app_source[:password]
           svn_arguments "--no-auth-cache --non-interactive --trust-server-cert"
           svn_info_args "--no-auth-cache --non-interactive --trust-server-cert"
         else
-          raise "unsupported SCM type #{deploy[:scm][:scm_type].inspect}"
+          raise "unsupported SCM type #{app_source[:type].inspect}"
       end
 
       before_migrate do

@@ -37,7 +37,7 @@ module OpsWorks
           mode 0755
         end
 
-        s3_bucket, s3_key, base_url = OpsWorks::SCM::S3.parse_uri(scm_options[:repository])
+        s3_bucket, s3_key, base_url = OpsWorks::SCM::S3.parse_uri(scm_options[:url])
 
         s3_file "#{tmpdir}/archive" do
           bucket s3_bucket
