@@ -15,7 +15,11 @@
 ###
 
 default[:rails_stack][:name] = "nginx_unicorn"
-default[:opsworks][:rails_stack][:name] = default[:rails_stack][:name]
+normal[:opsworks][:rails_stack][:name] = node[:rails_stack][:name]
+
+# Chef::Log.info("********** rails stack name is '#{node[:opsworks][:rails_stack][:name]}' **********")
+# Chef::Log.info("********** rails stack name is '#{default[:rails_stack][:name]}' **********")
+
 case node[:opsworks][:rails_stack][:name]
 when "apache_passenger"
   normal[:opsworks][:rails_stack][:recipe] = "passenger_apache2::rails"

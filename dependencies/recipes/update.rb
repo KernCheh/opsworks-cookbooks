@@ -2,15 +2,10 @@
 # Cookbook Name:: dependencies
 # Recipe:: update
 
-case node["opsworks"]["ruby_stack"]
-when "ruby"
-  include_recipe "ruby"
-end
+layer = search('aws_opsworks_layer').first
 
-include_recipe "opsworks_nodejs" if node["opsworks"]["instance"]["layers"].include?("nodejs-app")
+include_recipe 'opsworks_nodejs' if layer['shortname'] == 'nodejs-app'
 
-include_recipe 'packages'
-include_recipe 'gem_support'
 
 case node[:platform]
 when 'centos','redhat','fedora','amazon'

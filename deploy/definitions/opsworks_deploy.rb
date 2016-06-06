@@ -59,6 +59,8 @@ define :opsworks_deploy do
     end
   end
 
+  layer = search('aws_opsworks_layer').first
+
   # setup deployment & checkout
   if deploy[:scm] && deploy[:scm][:scm_type] != 'other'
     Chef::Log.debug("Checking out source code of application #{application} with type #{deploy[:application_type]}")
@@ -77,9 +79,6 @@ define :opsworks_deploy do
       symlink_before_migrate(deploy[:symlink_before_migrate])
       symlinks(deploy[:symlinks]) unless deploy[:symlinks].nil?
       action deploy[:action]
-
-      layer = search('aws_opsworks_layer').first
-      Chef::Log.info("********** The layer's shortname is '#{layer['shortname']}' **********")
 
       if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
         restart_command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
@@ -168,6 +167,8 @@ define :opsworks_deploy do
   end
 
   if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
+    Chef::Log.info("********** rails stack name is '#{node[:opsworks][:rails_stack][:name]}' **********")
+
     case node[:opsworks][:rails_stack][:name]
 
       when 'apache_passenger'

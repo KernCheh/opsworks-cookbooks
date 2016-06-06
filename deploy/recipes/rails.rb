@@ -25,6 +25,8 @@ node[:deploy].each do |application, deploy|
     app application
   end
 
+  Chef::Log.info("****** deploy data #{deploy.inspect} ******")
+
   opsworks_deploy do
     deploy_data deploy
     app application

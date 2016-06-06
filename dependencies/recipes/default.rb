@@ -4,7 +4,6 @@
 
 include_recipe 'packages'
 include_recipe 'gem_support'
-include_recipe 'install_ruby'
 
 case node[:platform]
 when 'centos','redhat','fedora','amazon'
@@ -19,7 +18,7 @@ when 'centos','redhat','fedora','amazon'
 when 'debian','ubuntu'
   node[:dependencies][:debs].each do |deb, version|
     Chef::Log.info("preparing installation of dependency: dpkg #{deb.inspect}")
-    package deb do
+    apt_package deb do
       action :upgrade
       version(version)
     end
@@ -36,3 +35,4 @@ node[:dependencies][:gems].each do |gem_name, version|
   end
 end
 
+include_recipe 'install_ruby'
