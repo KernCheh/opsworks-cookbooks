@@ -1,7 +1,8 @@
 define :opsworks_deploy do
   application = params[:app]
   deploy = params[:deploy_data]
-  app_source = search('aws_opsworks_app').first['app_source']
+  app_data_bag = search('aws_opsworks_app').first
+  app_source = app_data_bag['app_source']
   layer = search('aws_opsworks_layer').first
 
   directory "#{deploy[:deploy_to]}" do
@@ -73,7 +74,7 @@ define :opsworks_deploy do
       revision app_source[:revision]
       migrate deploy[:migrate]
       migration_command deploy[:migrate_command]
-      environment deploy[:environment].to_hash
+      environment app_data_bag['environment'].to_hash
       purge_before_symlink(deploy[:purge_before_symlink]) unless deploy[:purge_before_symlink].nil?
       create_dirs_before_symlink(deploy[:create_dirs_before_symlink])
       symlink_before_migrate(deploy[:symlink_before_migrate])
