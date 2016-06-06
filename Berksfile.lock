@@ -21,6 +21,7 @@ DEPENDENCIES
   ebs
     path: ebs
   erlang (~> 1.5.0)
+  freebsd
   gem_support
     path: gem_support
   haproxy
@@ -108,6 +109,8 @@ DEPENDENCIES
   unicorn
     path: unicorn
   user
+  wkhtmltopdf
+    path: wkhtmltopdf
   yum
 
 GRAPH
@@ -158,6 +161,7 @@ GRAPH
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
     yum-erlang_solutions (>= 0.0.0)
+  freebsd (0.6.0)
   gem_support (1.0.0)
   haproxy (1.0.0)
     opsworks_commons (>= 0.0.0)
@@ -265,6 +269,9 @@ GRAPH
   user (0.4.2)
   windows (1.43.0)
     chef_handler (>= 0.0.0)
+  wkhtmltopdf (0.3.0)
+    apt (>= 0.0.0)
+    freebsd (>= 0.0.0)
   yum (3.11.0)
   yum-epel (0.7.0)
     yum (>= 3.6.3)

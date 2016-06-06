@@ -52,12 +52,14 @@ cookbook 'ssh_users',  path: "ssh_users"
 cookbook 'sneakers_worker', path: 'sneakers_worker'
 cookbook 'test_suite',  path: "test_suite"
 cookbook 'unicorn',  path: "unicorn"
+cookbook 'wkhtmltopdf', path: 'wkhtmltopdf'
 
 cookbook 'ruby_build'
 cookbook 'erlang', '~>1.5.0'
 cookbook 'rabbitmq', '~>3.3.0'
 cookbook 'apt'
 cookbook 'yum'
+cookbook 'freebsd'
 
 # local
 cookbook 'user'
