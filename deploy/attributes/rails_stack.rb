@@ -14,11 +14,14 @@
 # See also: http://docs.aws.amazon.com/opsworks/latest/userguide/customizing.html
 ###
 
-default[:rails_stack][:name] = "nginx_unicorn"
-normal[:opsworks][:rails_stack][:name] = node[:rails_stack][:name]
+class AttributeSearch
+  extend Chef::DSL::DataQuery
+end
 
-# Chef::Log.info("********** rails stack name is '#{node[:opsworks][:rails_stack][:name]}' **********")
-# Chef::Log.info("********** rails stack name is '#{default[:rails_stack][:name]}' **********")
+layer = OpsWorks::ResolveLayer.resolve_current_layer(AttributeSearch.search('aws_opsworks_layer'))
+layer_name = layer['shortname']
+Chef::Log.info("*** LAYER NAMES ARE #{layer}")
+normal[:opsworks][:rails_stack][:name] = node[:rails_stack][layer_name][:name] || 'nginx_unicorn'
 
 case node[:opsworks][:rails_stack][:name]
 when "apache_passenger"
@@ -31,8 +34,6 @@ when "nginx_unicorn"
   normal[:opsworks][:rails_stack][:needs_reload] = true
   normal[:opsworks][:rails_stack][:service] = 'unicorn'
   normal[:opsworks][:rails_stack][:restart_command] = "../../shared/scripts/unicorn restart"
-else
-  raise "Unknown stack: #{node[:opsworks][:rails_stack][:name].inspect}"
 end
 
 include_attribute "deploy::customize"

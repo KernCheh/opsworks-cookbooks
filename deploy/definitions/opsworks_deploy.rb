@@ -3,7 +3,7 @@ define :opsworks_deploy do
   deploy = params[:deploy_data]
   app_data_bag = search('aws_opsworks_app').first
   app_source = app_data_bag['app_source']
-  layer = search('aws_opsworks_layer').first
+  layer = OpsWorks::ResolveLayer.resolve_current_layer(search('aws_opsworks_layer'))
 
   directory "#{deploy[:deploy_to]}" do
     group deploy[:group]
@@ -181,6 +181,8 @@ define :opsworks_deploy do
       ENV['HOME'] = "/root"
     end
   end
+
+  Chef::Log.info("********** layer shortname is '#{layer}' **********")
 
   if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
     Chef::Log.info("********** rails stack name is '#{node[:opsworks][:rails_stack][:name]}' **********")
