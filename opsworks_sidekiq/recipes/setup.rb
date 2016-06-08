@@ -35,7 +35,7 @@ node[:deploy].each do |application, deploy|
     workers.each do |worker, options|
 
       # Convert attribute classes to plain old ruby objects
-      config = options[:config] ? options[:config].to_hash : {}
+      config = options['config'] ? options['config'].to_hash : {}
       config.each do |k, v|
         case v
         when Chef::Node::ImmutableArray
