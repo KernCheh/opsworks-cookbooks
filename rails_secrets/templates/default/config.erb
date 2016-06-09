@@ -1,0 +1,11 @@
+StrictHostKeyChecking no
+
+Host github.com
+  Hostname github.com
+  User deploy
+  IdentityFile ~/.ssh/id_dsa
+
+Host github.com-secrets
+  Hostname github.com
+  User deploy
+  IdentityFile ~/.ssh/rails_secrets

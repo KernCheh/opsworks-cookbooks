@@ -95,6 +95,8 @@ DEPENDENCIES
   rabbitmq (~> 3.3.0)
   rails
     path: rails
+  rails_secrets
+    path: rails_secrets
   ruby
     path: ruby
   ruby_build
@@ -266,6 +268,8 @@ GRAPH
     apache2 (>= 0.0.0)
     deploy (>= 0.0.0)
     nginx (>= 0.0.0)
+  rails_secrets (0.0.0)
+    deploy (>= 0.0.0)
   ruby (1.0.0)
     opsworks_bundler (>= 0.0.0)
     opsworks_commons (>= 0.0.0)

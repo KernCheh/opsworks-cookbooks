@@ -103,6 +103,28 @@ define :opsworks_deploy do
       before_migrate do
         link_tempfiles_to_current_release
 
+        # Patch files in luxola project
+        ff = ::File.read(release_path + '/Gemfile')
+        content = ff.gsub(/ruby '\d.\d*.\d*'/, '')
+        content = content.gsub(/gem 'asset_sync'/, '')
+        content << "\ngem 'figaro'"
+        File.open(release_path + '/Gemfile', 'w') {|file| file.puts content }
+
+        ff = ::File.read(release_path + '/config/environments/staging.rb')
+        content = ff.gsub(/config\.assets\.cache = false/, 'config.assets.cache = true')
+        content = content.gsub(/config\.serve_static_files = false/, 'config.serve_static_files = true')
+        content = content.gsub(/config\.action_controller\.asset_host = ENV\['ASSET_HOST'\] \|\| 'luxola-assets-staging\.s3\.amazonaws\.com'/, '')
+        content = content.gsub(/ENV\['REDIS_URL'\] = ENV\['REDISTOGO_URL'\]/, '')
+        File.open(release_path + '/config/environments/staging.rb', 'w') {|file| file.puts content }
+
+        ff = ::File.read(release_path + '/lib/cyber_source/helpers.rb')
+        content = ff.gsub(/if Rails\.env\.staging\? \|\| Rails\.env\.production\?/, 'if false')
+        File.open(release_path + '/lib/cyber_source/helpers.rb', 'w') {|file| file.puts content }
+
+        File.delete(release_path + '/config/initializers/burst_http_cache.rb')
+        File.delete(release_path + '/config/initializers/fonts.rb')
+        # End of patch
+
         if deploy[:application_type] == 'rails'
           if deploy[:auto_bundle_on_deploy]
             OpsWorks::RailsConfiguration.bundle(application, node[:deploy][application], release_path)

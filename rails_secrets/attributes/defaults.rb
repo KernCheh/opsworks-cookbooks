@@ -1,0 +1,1 @@
+default[:rails_secrets] = {}
