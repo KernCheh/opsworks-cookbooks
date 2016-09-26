@@ -11,6 +11,19 @@ node[:deploy].each do |application, deploy|
 
   # Write sneakers.rb initializer
   layer = OpsWorks::ResolveLayer.resolve_current_layer(search('aws_opsworks_layer'))['shortname']
+
+  template "#{deploy[:deploy_to]}/shared/config/sneakers.conf.rb" do
+    source 'sneakers.conf.rb.erb'
+    owner deploy[:user]
+    group deploy[:group]
+    mode '0660'
+    variables({deploy_to_path: deploy[:deploy_to]})
+
+    only_if do
+      File.exists?("#{deploy[:deploy_to]}/shared/config")
+    end
+  end
+
   template "#{deploy[:deploy_to]}/shared/config/sneakers.rb" do
     source 'sneakers.rb.erb'
     owner deploy[:user]

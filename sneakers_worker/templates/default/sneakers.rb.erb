@@ -4,5 +4,6 @@ Sneakers.configure( <% @vars.each do |key, value| %>
                     <% end %>
                     daemonize: true,
                     pid_path: '<%= @deploy_to_path %>/shared/pids/sneakers.pid',
+                    runner_config_file: '<%= @deploy_to_path %>/shared/config/sneakers.conf.rb',
                     log: 'log/sneakers.log'
 )

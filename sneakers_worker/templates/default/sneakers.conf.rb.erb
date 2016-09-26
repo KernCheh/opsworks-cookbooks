@@ -1,0 +1,18 @@
+workers 1
+
+before_fork do
+  defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.connection.disconnect!
+
+  defined?(REDIS) and
+      REDIS.quit
+
+  if RabbitmqConnectionManager.connection.connected?
+    RabbitmqConnectionManager.connection.close
+  end
+end
+
+after_fork do
+  defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.establish_connection
+end
