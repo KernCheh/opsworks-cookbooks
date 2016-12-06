@@ -34,6 +34,11 @@ when "nginx_unicorn"
   normal[:opsworks][:rails_stack][:needs_reload] = true
   normal[:opsworks][:rails_stack][:service] = 'unicorn'
   normal[:opsworks][:rails_stack][:restart_command] = "../../shared/scripts/unicorn restart"
+when "nginx_puma"
+  normal[:opsworks][:rails_stack][:recipe] = "opsworks_puma::default"
+  normal[:opsworks][:rails_stack][:needs_reload] = true
+  normal[:opsworks][:rails_stack][:service] = 'puma'
+  normal[:opsworks][:rails_stack][:restart_command] = "../../shared/puma/puma_restart.sh"
 end
 
 include_attribute "deploy::customize"

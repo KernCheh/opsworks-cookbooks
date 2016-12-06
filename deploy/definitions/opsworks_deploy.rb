@@ -201,6 +201,12 @@ define :opsworks_deploy do
           deploy deploy
         end
 
+      when 'nginx_puma'
+        puma_web_app do
+          application application
+          deploy deploy
+        end
+
       else
         raise "Unsupported Rails stack"
     end

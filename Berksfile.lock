@@ -30,6 +30,7 @@ DEPENDENCIES
     path: install_ruby
   logentries_agent
     path: logentries_agent
+  logrotate
   memcached
     path: memcached
   mod_php5_apache2
@@ -68,6 +69,8 @@ DEPENDENCIES
     path: opsworks_nodejs
   opsworks_postgresql
     path: opsworks_postgresql
+  opsworks_puma
+    path: opsworks_puma
   opsworks_rabbitmq
     path: opsworks_rabbitmq
   opsworks_rubygems
@@ -170,6 +173,8 @@ GRAPH
   logentries_agent (0.2.6)
     apt (>= 0.0.0)
     yum (>= 0.0.0)
+  logrotate (2.1.0)
+    compat_resource (>= 0.0.0)
   memcached (1.0.0)
     opsworks_agent_monit (>= 0.0.0)
   mingw (1.1.0)
@@ -212,6 +217,10 @@ GRAPH
     deploy (>= 0.0.0)
     opsworks_commons (>= 0.0.0)
   opsworks_postgresql (1.0.0)
+  opsworks_puma (0.0.5)
+    deploy (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    nginx (>= 0.0.0)
   opsworks_rabbitmq (0.3.0)
     erlang (~> 1.5.0)
     rabbitmq (~> 3.3.0)

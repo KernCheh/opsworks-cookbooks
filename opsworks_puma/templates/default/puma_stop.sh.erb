@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+. /lib/lsb/init-functions
+
+PATH=/usr/local/bin:$PATH
+
+APPNAME="<%= @name %>"
+APP_DIR="<%= @directory %>"
+
+PUMA_DIR="$APP_DIR/shared/puma"
+PIDFILE="$APP_DIR/shared/pids/$APPNAME.pid"
+
+cleanup() {
+  rm -f $PUMA_DIR/$APPNAME*.{pid,state,sock}
+  rm -f $PIDFILE
+}
+
+# Kill process
+if [ -e  $PIDFILE ]; then
+  echo -n "Shutting down $APPNAME.."
+  kill $(cat $PIDFILE) && cleanup && log_success_msg || log_failure_msg
+else
+  echo "$APPNAME is not running"
+fi
