@@ -31,6 +31,13 @@ server {
     proxy_headers_hash_bucket_size <%= @application[:nginx][:proxy_headers_hash_bucket_size] %>;
     <% end %>
 
+    <% if node[:nginx][:redirect_to_https] %>
+      # We want to explicitly check for http and not reject non-https requests, as http_x_forwarded_proto is empty on ELB health checks
+      if ($http_x_forwarded_proto = 'http') {
+        return 301 https://$host$request_uri?;
+      }
+    <% end %>
+
     proxy_redirect off;
 
     # If you don't find the filename in the static files
