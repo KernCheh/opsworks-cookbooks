@@ -1,5 +1,7 @@
 node[:deploy].each do |application, deploy|
 
+  node.set[:opsworks][:rails_stack][:restart_command] = ''
+
   if node[:cron_jobs][application]
     node[:cron_jobs][application].each do |job|
       cron job[:name] do
@@ -10,5 +12,4 @@ node[:deploy].each do |application, deploy|
       end
     end
   end
-
 end
