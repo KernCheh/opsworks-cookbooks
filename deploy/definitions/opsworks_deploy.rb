@@ -118,16 +118,22 @@ define :opsworks_deploy do
 
           rds_db_instance = search('aws_opsworks_rds_db_instance').first
 
-          combined_db_variable = {
-            database: app_data_bag[:data_sources].first[:database_name],
-            data_source_provider: app_data_bag[:data_sources].first[:type] == 'RdsDbInstance' ? 'rds' : nil,
-            host: rds_db_instance[:address],
-            type: rds_db_instance[:engine] == 'postgres' ? 'postgresql' : rds_db_instance[:engine],
-            adapter: rds_db_instance[:engine] == 'postgres' ? 'postgresql' : rds_db_instance[:engine],
-            username: rds_db_instance[:db_user],
-            password: rds_db_instance[:db_password]
-          }.merge(node[:deploy][application][:database].symbolize_keys)
-
+          if rds_db_instance
+            combined_db_variable = {
+              database: app_data_bag[:data_sources].first[:database_name],
+              data_source_provider: app_data_bag[:data_sources].first[:type] == 'RdsDbInstance' ? 'rds' : nil,
+              host: rds_db_instance[:address],
+              type: rds_db_instance[:engine] == 'postgres' ? 'postgresql' : rds_db_instance[:engine],
+              adapter: rds_db_instance[:engine] == 'postgres' ? 'postgresql' : rds_db_instance[:engine],
+              username: rds_db_instance[:db_user],
+              password: rds_db_instance[:db_password]
+            }.merge(node[:deploy][application][:database].symbolize_keys)
+          else
+            combined_db_variable = {
+              database: app_data_bag[:data_sources].first[:database_name],
+              data_source_provider: app_data_bag[:data_sources].first[:type] == 'RdsDbInstance' ? 'rds' : nil,
+            }.merge(node[:deploy][application][:database].symbolize_keys)
+          end
           Chef::Log.info("COMBINED DB VAR #{combined_db_variable}")
 
           template "#{node[:deploy][application][:deploy_to]}/shared/config/database.yml" do
@@ -142,7 +148,7 @@ define :opsworks_deploy do
             )
 
             only_if do
-              rds_db_instance[:address].present?
+              rds_db_instance && rds_db_instance[:address].present?
             end
           end.run_action(:create)
         elsif deploy[:application_type] == 'aws-flow-ruby'

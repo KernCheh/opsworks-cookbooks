@@ -7,7 +7,7 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  rds_db_instance = search('aws_opsworks_rds_db_instance').first
+  rds_db_instance = search('aws_opsworks_rds_db_instance').first || { engine: deploy[:database][:adapter] }
 
   case rds_db_instance[:engine]
   when "mysql"
