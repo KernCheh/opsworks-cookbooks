@@ -9,26 +9,34 @@ node[:deploy].each do |application, deploy|
     next
   end
 
-  opsworks_deploy_dir do
-    user deploy[:user]
-    group deploy[:group]
-    path deploy[:deploy_to]
-  end
+  if deploy[:sidekiq_in_same_instance]
 
-  Chef::Log.debug("Running opsworks_sidekiq::setup for application #{application}")
-  node.set[:opsworks][:rails_stack][:recipe] = "opsworks_sidekiq::setup"
-  node.set[:opsworks][:rails_stack][:restart_command] = node[:sidekiq][application][:restart_command]
+    Chef::Log.debug("Running opsworks_sidekiq::setup quick restart for application #{application}")
+    node.set[:opsworks][:rails_stack][:recipe] = "opsworks_sidekiq::setup"
 
-  opsworks_rails do
-    deploy_data deploy
-    app application
-  end
+  else
 
-  Chef::Log.debug("Deploying Sidekiq Application: #{application}")
+    opsworks_deploy_dir do
+      user deploy[:user]
+      group deploy[:group]
+      path deploy[:deploy_to]
+    end
 
-  opsworks_deploy do
-    deploy_data deploy
-    app application
+    Chef::Log.debug("Running opsworks_sidekiq::setup for application #{application}")
+    node.set[:opsworks][:rails_stack][:recipe] = "opsworks_sidekiq::setup"
+    node.set[:opsworks][:rails_stack][:restart_command] = node[:sidekiq][application][:restart_command]
+
+    opsworks_rails do
+      deploy_data deploy
+      app application
+    end
+
+    Chef::Log.debug("Deploying Sidekiq Application: #{application}")
+
+    opsworks_deploy do
+      deploy_data deploy
+      app application
+    end
   end
 
   Chef::Log.debug("Restarting Sidekiq Application: #{application}")
