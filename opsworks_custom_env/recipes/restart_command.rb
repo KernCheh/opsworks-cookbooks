@@ -6,6 +6,9 @@ node[:deploy].each do |application, deploy|
     user deploy[:user]
 
     action :nothing
-  end
 
+    only_if do
+      !deploy[:restart_on_cookbook] || deploy[:restart_on_cookbook] == cookbook_name.to_s
+    end
+  end
 end

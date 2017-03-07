@@ -6,7 +6,6 @@
 # Notifies a "restart Rails app <name> for custom env" resource.
 
 define :custom_env_template do
-  
   template "#{params[:deploy][:deploy_to]}/shared/config/application.yml" do
     source "application.yml.erb"
     owner params[:deploy][:user]
@@ -19,5 +18,4 @@ define :custom_env_template do
       File.exists?("#{params[:deploy][:deploy_to]}/shared/config")
     end
   end
-  
 end
