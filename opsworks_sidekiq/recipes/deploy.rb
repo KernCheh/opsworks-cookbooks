@@ -42,5 +42,9 @@ node[:deploy].each do |application, deploy|
   Chef::Log.debug("Restarting Sidekiq Application: #{application}")
   execute "restart Rails app #{application}" do
     command "sleep 60 && #{node[:sidekiq][application][:restart_command]}"
+
+    only_if do
+      !deploy[:restart_on_cookbook] || deploy[:restart_on_cookbook] == cookbook_name.to_s
+    end
   end
 end

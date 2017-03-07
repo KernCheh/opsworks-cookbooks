@@ -81,7 +81,7 @@ define :opsworks_deploy do
       symlinks(deploy[:symlinks]) unless deploy[:symlinks].nil?
       action deploy[:action]
 
-      if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/)
+      if deploy[:application_type] == 'rails' && !!(layer['shortname'] =~ /rails-app/) && (!deploy[:restart_on_cookbook] || deploy[:restart_on_cookbook] == cookbook_name.to_s)
         restart_command "sleep #{deploy[:sleep_before_restart]} && #{node[:opsworks][:rails_stack][:restart_command]}"
       end
 
