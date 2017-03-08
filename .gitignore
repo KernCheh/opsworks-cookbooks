@@ -27,3 +27,5 @@ Vagrantfile
 opsworks.json
 opsworks-*.json
 berks-cookbooks*
+
+.DS_Store
