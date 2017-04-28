@@ -4,8 +4,10 @@ DEPENDENCIES
   apache2
     path: apache2
   apt
+  ark
   assets_precompile
     path: assets_precompile
+  build-essential
   burst_http_cache
     path: burst_http_cache
   chef_opsworks_elb
@@ -26,6 +28,7 @@ DEPENDENCIES
     path: gem_support
   haproxy
     path: haproxy
+  homebrew
   install_ruby
     path: install_ruby
   logentries_agent
@@ -39,6 +42,8 @@ DEPENDENCIES
     path: mysql
   nginx
     path: nginx
+  nodejs
+    path: nodejs
   opsworks_agent_monit
     path: opsworks_agent_monit
   opsworks_aws_flow_ruby
@@ -115,6 +120,7 @@ DEPENDENCIES
   wkhtmltopdf
     path: wkhtmltopdf
   yum
+  yum-epel
 
 GRAPH
   agent_version (1.0.0)
@@ -122,6 +128,10 @@ GRAPH
   apache2 (1.0.0)
   apt (4.0.0)
     compat_resource (>= 0.0.0)
+  ark (3.0.0)
+    build-essential (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+    windows (>= 0.0.0)
   assets_precompile (0.1.0)
   build-essential (6.0.0)
     compat_resource (>= 12.10)
@@ -169,6 +179,7 @@ GRAPH
   gem_support (1.0.0)
   haproxy (1.0.0)
     opsworks_commons (>= 0.0.0)
+  homebrew (4.1.0)
   install_ruby (1.0.0)
     ruby_build (>= 0.0.0)
   logentries_agent (0.2.6)
@@ -187,6 +198,12 @@ GRAPH
   mysql (1.0.0)
     opsworks_commons (>= 0.0.0)
   nginx (1.0.0)
+  nodejs (3.0.1)
+    apt (>= 2.9.1)
+    ark (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    yum-epel (>= 0.0.0)
   opsworks_agent_monit (1.0.0)
     opsworks_initial_setup (>= 0.0.0)
   opsworks_aws_flow_ruby (1.0.0)

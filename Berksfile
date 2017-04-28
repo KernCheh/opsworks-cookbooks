@@ -18,6 +18,7 @@ cookbook 'memcached',  path: "memcached"
 cookbook 'mod_php5_apache2',  path: "mod_php5_apache2"
 cookbook 'mysql',  path: "mysql"
 cookbook 'nginx',  path: "nginx"
+cookbook 'nodejs',  path: "nodejs"
 cookbook 'opsworks_agent_monit',  path: "opsworks_agent_monit"
 cookbook 'opsworks_aws_flow_ruby',  path: "opsworks_aws_flow_ruby"
 cookbook 'opsworks_berkshelf',  path: "opsworks_berkshelf"
@@ -62,6 +63,10 @@ cookbook 'apt'
 cookbook 'yum'
 cookbook 'freebsd'
 cookbook 'logrotate'
+cookbook 'yum-epel'
+cookbook 'build-essential'
+cookbook 'ark'
+cookbook 'homebrew'
 
 # local
 cookbook 'user'

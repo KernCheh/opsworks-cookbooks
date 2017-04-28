@@ -37,6 +37,16 @@ node[:deploy].each do |application, deploy|
     environment 'RAILS_ENV' => rails_env
   end
 
+  execute "rake webpack:compile" do
+    cwd release_path
+    command "sudo su deploy -c 'yarn install && npm rebuild node-sass && RAILS_ENV=#{rails_env} bundle exec rake webpack:compile'"
+    environment 'RAILS_ENV' => rails_env
+
+    only_if do
+      !!application[:webpack_compile]
+    end
+  end
+
   Chef::Log.info("Restart command #{node[:opsworks][:rails_stack][:restart_command]}")
   execute "restart Rails application #{application}" do
     cwd deploy[:current_path]
