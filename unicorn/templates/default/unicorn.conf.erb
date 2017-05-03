@@ -49,9 +49,15 @@ before_fork do |server, worker|
   end
 
   <% if node[:unicorn][:rabbitmq] %>
-  if RabbitmqConnectionManager.connection.connected?
-    RabbitmqConnectionManager.connection.close
-  end
+    if RabbitmqConnectionManager.connection.connected?
+      RabbitmqConnectionManager.connection.close
+    end
+
+    if defined?(Publishers::Sap::Base::SapRabbitmqConnectionManager)
+      if Publishers::Sap::Base::SapRabbitmqConnectionManager.connection.connected?
+        Publishers::Sap::Base::SapRabbitmqConnectionManager.connection.close
+      end
+    end
   <% end %>
 end
 
@@ -68,6 +74,10 @@ after_fork do |server, worker|
   # correctly implements pread()/pwrite() system calls)
 
   <% if node[:unicorn][:rabbitmq] %>
-  RabbitmqConnectionManager.connection.start
+    RabbitmqConnectionManager.connection.start
+
+    if defined?(Publishers::Sap::Base::SapRabbitmqConnectionManager)
+      Publishers::Sap::Base::SapRabbitmqConnectionManager.connection.start
+    end
   <% end %>
 end
