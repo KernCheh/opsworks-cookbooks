@@ -43,7 +43,7 @@ node[:deploy].each do |application, deploy|
     environment 'RAILS_ENV' => rails_env
 
     only_if do
-      !!application[:webpack_compile]
+      !!deploy[:webpack_compile]
     end
   end
 
