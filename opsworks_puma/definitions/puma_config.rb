@@ -4,7 +4,7 @@ define :puma_config, :owner => 'deploy', :group => 'www-data', :directory  => ni
        :quiet => false, :thread_min => 0, :thread_max => 16, :bind => nil, :control_app_bind => nil,
        :workers => 0, :activate_control_app => true, :logrotate => true, :exec_prefix => nil,
        :config_source => nil, :config_cookbook => nil, :worker_timeout => nil,
-       :preload_app => true, :prune_bundler => true, :on_worker_boot => nil do
+       :preload_app => false, :prune_bundler => true, :on_worker_boot => nil do
 
   deploy = params[:deploy_data]
 
