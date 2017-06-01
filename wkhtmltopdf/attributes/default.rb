@@ -109,4 +109,4 @@ else
 end
 
 parent_folder = node['wkhtmltopdf']['version'].split('.').take(2).join('.')
-default['wkhtmltopdf']['mirror_url'] = "http://download.gna.org/wkhtmltopdf/#{parent_folder}/#{node['wkhtmltopdf']['version']}/#{node['wkhtmltopdf']['archive']}"
+default['wkhtmltopdf']['mirror_url'] = "http://downloads.wkhtmltopdf.org/#{parent_folder}/#{node['wkhtmltopdf']['version']}/#{node['wkhtmltopdf']['archive']}"
