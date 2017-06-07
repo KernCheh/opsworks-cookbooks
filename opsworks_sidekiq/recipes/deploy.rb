@@ -44,7 +44,7 @@ node[:deploy].each do |application, deploy|
     command "sleep 60 && #{node[:sidekiq][application][:restart_command]}"
 
     only_if do
-      !deploy[:restart_on_cookbook] || deploy[:restart_on_cookbook] == cookbook_name.to_s
+      !deploy[:restart_on_cookbook] || deploy[:sidekiq_in_same_instance] || deploy[:restart_on_cookbook] == cookbook_name.to_s
     end
   end
 end
