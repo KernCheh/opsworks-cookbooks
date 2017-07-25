@@ -119,6 +119,7 @@ DEPENDENCIES
   user
   wkhtmltopdf
     path: wkhtmltopdf
+  yarn (~> 0.3.1)
   yum
   yum-epel
 
@@ -299,6 +300,7 @@ GRAPH
   wkhtmltopdf (0.3.0)
     apt (>= 0.0.0)
     freebsd (>= 0.0.0)
+  yarn (0.3.1)
   yum (3.11.0)
   yum-epel (0.7.0)
     yum (>= 3.6.3)

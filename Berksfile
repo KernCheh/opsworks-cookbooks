@@ -67,6 +67,7 @@ cookbook 'yum-epel'
 cookbook 'build-essential'
 cookbook 'ark'
 cookbook 'homebrew'
+cookbook 'yarn', '~> 0.3.1'
 
 # local
 cookbook 'user'
